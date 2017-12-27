@@ -29,28 +29,21 @@ import java.security.AccessControlContext;
 public class BeanLifeCycle {
 
     private static  void LifeCycleInBeanFactory(ApplicationContext ctx){
-        //ApplicationContext ctx =  (ApplicationContext) SpringApplication.run(BeanLifeCycle.class, args);
-        ConfigurableBeanFactory bf = (ConfigurableBeanFactory) ctx.getAutowireCapableBeanFactory();
-        /*bf.addBeanPostProcessor(new MyBeanPostProcesser());
-        bf.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcesser());*/
 
+        ConfigurableBeanFactory bf = (ConfigurableBeanFactory) ctx.getAutowireCapableBeanFactory();
         Car car1 = (Car) bf.getBean("car");
         car1.introduce();
         car1.setColor("红色");
-
+        car1.introduce();
         Car car2 = (Car) bf.getBean("car");
-
-        System.out.println("car1==car2" + (car1 == car2));
-
+        System.out.println("car1==car2;" + (car1 == car2));
         // 关闭容器
         bf.destroySingletons();
     }
-
 
     public static void main(String[] args) {
         ApplicationContext ctx   = (ApplicationContext)SpringApplication.run(cn.net.bigorange.carbean.BeanLifeCycle.class, args);
         LifeCycleInBeanFactory(ctx);
     }
-
 
 }

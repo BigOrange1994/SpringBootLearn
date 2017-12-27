@@ -10,12 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyBeanPostProcesser implements BeanPostProcessor {
 
-
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        if(beanName.equals("car")){
+        if (beanName.equals("car")) {
             Car car = (Car) bean;
-            if(car.getColor() ==null){
+            if (car.getColor() == null) {
                 System.out.println("BeanPostProcessor.postProcessBeforeInitialization()");
                 car.setColor("black");
             }
@@ -25,13 +24,14 @@ public class MyBeanPostProcesser implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if(beanName.equals("car")){
+        if (beanName.equals("car")) {
             Car car = (Car) bean;
-            if(car.getSpeed() >= 200){
+            if (car.getSpeed() >= 200) {
                 System.out.println("BeanPostProcessor.postProcessAfterInitialization()");
                 car.setSpeed(200);
             }
         }
         return bean;
     }
+
 }

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-//@ComponentScan("cn.net.bigorange.carbean")
 @ComponentScan(basePackages = {"cn.net.bigorange.carbean"})
 public class CarBean {
 

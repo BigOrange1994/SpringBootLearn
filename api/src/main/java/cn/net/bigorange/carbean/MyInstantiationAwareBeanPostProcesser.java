@@ -49,4 +49,5 @@ public class MyInstantiationAwareBeanPostProcesser extends InstantiationAwareBea
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return super.postProcessAfterInitialization(bean, beanName);
     }
+
 }

@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by think on 2017/12/26.
  */
-// 1 管理Bean的生命周期
 
+// 管理Bean的生命周期
 public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean{
 
+    // 品牌
     private String brand;
+    // 颜色
     private String color;
+    // 速度
     private int speed;
 
     private BeanFactory beanFactory;
+    // bean名称
     private String beanName;
 
     public Car(){
@@ -28,27 +32,24 @@ public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, D
         this.brand = brand;
     }
 
-
     public void introduce(){
-        System.out.print("brand" + brand + ";color" + color + "; speed" + speed);
+        System.out.println("brand=" + brand + "; color=" + color + "; speed=" + speed);
     }
 
     @Override
     public void destroy() throws Exception {
         System.out.println("调用DisposableBean.destroy()");
-
     }
-
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("调用BeanFactoryAware。setBeanFactory()");
+        System.out.println("调用BeanFactoryAware.setBeanFactory()");
         this.beanFactory = beanFactory;
     }
 
     @Override
     public void setBeanName(String s) {
-        System.out.println("调用BeanNameAware的setBeanName()");
+        System.out.println("调用BeanNameAware.setBeanName()");
         this.beanName = s;
     }
 
@@ -57,15 +58,13 @@ public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, D
         System.out.println("调用InitializingBean.afterPropertiesSet()");
     }
 
-    // 通过<bean 的init-me
-    // thod属性指定初始化方法
+    // 通过<bean> 的init-method属性指定初始化方法
     public void myInitMethod(){
         System.out.println("调用init-method的myInitMethod(),将Speed设置为240");
         this.speed = 240;
     }
 
-    // 通过<bean 的destory-method属性指定销毁方法
-
+    // 通过<bean> 的destory-method属性指定销毁方法
     public void myDestoryMethod(){
         System.out.println("调用init-method的myDestoryMethod()");
     }
@@ -89,8 +88,5 @@ public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, D
     public String getBrand(){
         return  this.brand;
     }
-
-
-
 
 }
