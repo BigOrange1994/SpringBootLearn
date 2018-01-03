@@ -24,7 +24,7 @@ import java.security.AccessControlContext;
 /**
  * Created by think on 2017/12/26.
  */
-@ComponentScan("cn.net.bigorange.carbean")
+@ComponentScan("cn.net.bigorange")
 @SpringBootApplication
 public class BeanLifeCycle {
 
