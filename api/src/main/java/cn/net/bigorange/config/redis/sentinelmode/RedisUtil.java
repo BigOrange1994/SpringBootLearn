@@ -1,4 +1,4 @@
-package cn.net.bigorange.config.redis;
+package cn.net.bigorange.config.redis.sentinelmode;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;

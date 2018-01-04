@@ -1,15 +1,8 @@
 package cn.net.bigorange.helper;
 
-import cn.net.bigorange.config.redis.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.net.bigorange.config.redis.sentinelmode.RedisUtil;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-
-import javax.annotation.Resource;
 
 /**
  * Created by bigorange on 2018/1/2.
