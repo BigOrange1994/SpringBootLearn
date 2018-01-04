@@ -17,6 +17,7 @@ public class MyBeanPostProcesser implements BeanPostProcessor {
             if (car.getColor() == null) {
                 System.out.println("BeanPostProcessor.postProcessBeforeInitialization()");
                 car.setColor("black");
+                car.setBrand("aa");
             }
         }
         return bean;
