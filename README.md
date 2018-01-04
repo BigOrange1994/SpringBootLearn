@@ -7,5 +7,5 @@ SpringBoot学习--项目介绍
 项目中的Demo有：
 1. Redis Sentinel 模式的集群搭建
 2. Redis Cluster 模式的集群搭建
-3. Bean Factory 生命周期演示
-4. ApplicationContext Factory 生命周期演示
+3. BeanFactory 中Bean生命周期演示
+4. ApplicationContext 中Bean生命周期演示
