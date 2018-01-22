@@ -1,0 +1,22 @@
+spring:
+     application:
+          name: say-hello
+
+# N.B. this is the default:
+    # cloud:
+     # config:
+      #   uri=http://localhost:8761
+management:
+  security:
+    enabled: false
+server:
+    port: 8085
+
+###ribbon负载均衡(官网上的这部分配置不生效，可忽略此部分，使用Eureka Cilent作为实际的Service, 即可实现负载均衡，没有必要使用假的###
+###客户端去模拟，使用‘EurekaClientApplication.java’来启动多个客户端，每次启动时，记得修改端口号###
+SAY-HELLO:
+   ribbon:
+      eureka:
+        enabled: false
+        listOfServers: localhost:8085,localhost:8083,localhost:8084
+        ServerListRefreshInterval: 15000
