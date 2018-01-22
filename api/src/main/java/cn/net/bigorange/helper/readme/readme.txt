@@ -15,11 +15,11 @@ introduction:
 
   4. 'TestRedis.java' is the demo of the redis cluster mode of 'Sentinel'. Before your study, you should build the env-
   iroment of redis sentinel in Linux. Follow this website to continue to your study.
-      http://e728efee.wiz03.com/share/s/3Dae_K3AjAmF2dr-H33Er24k15LM8V2J-AlJ2VWHcT0Px20l
+      http://e728efee.wiz03.com/share/s/3Dae_K3AjAmF2dr-H33Er24k2-YcNO0wT4g72zrS4d13NEjB
 
   5. 'TestRedisCluster.java' is the demo of the redis cluster mode of 'Cluster'. Before your study, you should build the
    enviroment of redis cluster in Linux. Follow this website to continue to your study.
-      http://e728efee.wiz03.com/share/s/3Dae_K3AjAmF2dr-H33Er24k15LM8V2J-AlJ2VWHcT0Px20l
+      http://e728efee.wiz03.com/share/s/3Dae_K3AjAmF2dr-H33Er24k2-YcNO0wT4g72zrS4d13NEjB
 
   6. 'BookStoreApplication.java' contains a restful service to collaborate with the Spring Cloud Hystrix Serive in
    'cn.net.bigorange.service.BookService' in 'utils' module. To continue to test Spring Cloud Hystrix, you should start
