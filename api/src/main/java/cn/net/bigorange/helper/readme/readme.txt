@@ -1,7 +1,7 @@
 introduction:
 
   1. 'EurekaServiceApplication.java' is the demo of Spring Cloud Eureka Server Point. To learn more info about Eureka,
-  please turn to this website to continue your study.
+  please turn to this website to continue to your study.
       https://spring.io/guides/gs/service-registration-and-discovery/
 
   2. 'SpringCloudConfigServerStarter.java' is the demo of Spring Cloud Config Server Point. And we user Git Respository to
@@ -23,7 +23,7 @@ introduction:
 
   6. 'BookStoreApplication.java' contains a restful service to collaborate with the Spring Cloud Hystrix Serive in
    'cn.net.bigorange.service.BookService' in 'utils' module. To continue to test Spring Cloud Hystrix, you should start
-   this service and Run the 'cn.net.bigorange.helper.ReadingApplication' in the 'utils' modules.
+   this service and then run the 'cn.net.bigorange.helper.ReadingApplication' in the 'utils' module.
 
   7. 'TestAnnotationConfig.java' contains the function of 'refresh()', you can deep into this function and concentrate on
   the main function, for example 'onRefresh()', to learn more about the procedure about Spring Application Context.
