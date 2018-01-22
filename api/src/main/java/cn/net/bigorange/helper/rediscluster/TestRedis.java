@@ -1,4 +1,4 @@
-package cn.net.bigorange.helper;
+package cn.net.bigorange.helper.rediscluster;
 
 import cn.net.bigorange.config.redis.sentinelmode.RedisUtil;
 import org.springframework.context.ApplicationContext;

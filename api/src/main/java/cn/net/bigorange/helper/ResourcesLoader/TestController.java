@@ -1,4 +1,4 @@
-package cn.net.bigorange.helper;
+package cn.net.bigorange.helper.resourcesloader;
 
 
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package cn.net.bigorange.helper;
+package cn.net.bigorange.helper.rediscluster;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
