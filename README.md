@@ -12,4 +12,6 @@ SpringBoot学习--项目介绍
 4. ApplicationContext 中Bean生命周期演示
 5. Spring Cloud 相关, 包括Eureka、Config Server、Hystrix、Ribbon等
 6. Spring 增强相关、CGlib动态代理、JDK动态代理
+7. Quartz相关
+8. AOP相关
 
