@@ -22,7 +22,7 @@ public class SimpleTriggerRunner {
 
         // 新版本的DSL风格
         JobDetail jobDetail = newJob(SimpleJob.class)
-                .withIdentity("job1", "jgroup1")
+                .withIdentity("job2", "jgroup2")
                 .usingJobData("name", "quartz")
                 .build();
         Trigger trigger = newTrigger()
