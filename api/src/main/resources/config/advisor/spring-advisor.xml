@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id = "waiterTarget" class="cn.net.bigorange.advice.NativeWaiter"/>
+    <bean id = "sellerTarget" class="cn.net.bigorange.advice.NativeSeller"/>
+    <bean id = "greetingBeforeAdvice" class="cn.net.bigorange.advice.GreetingBeforeAdvice"/>
+    <!-- 向切面注入增强 -->
+    <!-- 静态普通方法匹配切面 -->
+    <bean id = "greetingBeforeAdvisor" class="cn.net.bigorange.advisor.GreetingAdvisor"
+          p:advice-ref="greetingBeforeAdvice" />
+    <!-- 静态正则表达式方法匹配切面 -->
+    <bean id = "regexGreetingBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+          p:advice-ref="greetingBeforeAdvice">
+        <property name="patterns">
+            <list>
+                <value>cn\.net\.bigorange\.advice\.NativeWaiter\..*greet.*</value>
+                <value>cn\.net\.bigorange\.advice\.NativeSeller\..*greet.*</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 动态切面 -->
+    <bean id = "dynamicAdvisor" class = "org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor">
+        <property name="pointcut">
+            <bean class="cn.net.bigorange.pointcut.CusDynamicMethodMacherPointcut"/>
+        </property>
+        <property name="advice">
+            <bean class="cn.net.bigorange.advice.GreetingBeforeAdvice"/>
+        </property>
+    </bean>
+    <!-- 流程切面 -->
+    <bean id ="controlFlowPointCut" class="org.springframework.aop.support.ControlFlowPointcut">
+        <constructor-arg type = "java.lang.Class" value="cn.net.bigorange.advice.NativeWaiterDelegate"/>
+        <constructor-arg type = "java.lang.String" value="service"/>
+    </bean>
+    <bean id = "controlFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+        p:pointcut-ref="controlFlowPointCut"
+        p:advice-ref="greetingBeforeAdvice"/>
+    <!-- 复合切面 -->
+    <bean id = "composablePointcut" class="cn.net.bigorange.pointcut.CusComposablePointcut"></bean>
+    <bean id = "composableAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+        p:pointcut="#{composablePointcut.getInterSectionPointCut()}"
+        p:advice-ref="greetingBeforeAdvice"/>
+
+    <!-- 引介切面 -->
+
+    <bean id = "parent" abstract="true" class = "org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="composableAdvisor" p:proxyTargetClass="true"/>
+    <!-- 代理类 -->
+    <bean id="waiterProxy" parent = "parent" p:target-ref="waiterTarget"/>
+    <bean id="sellerProxy" parent= "parent" p:target-ref = "sellerTarget"/>
+</beans>
