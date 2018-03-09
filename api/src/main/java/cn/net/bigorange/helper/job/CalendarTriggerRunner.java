@@ -57,9 +57,6 @@ public class CalendarTriggerRunner {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-
     }
-
-
 
 }
