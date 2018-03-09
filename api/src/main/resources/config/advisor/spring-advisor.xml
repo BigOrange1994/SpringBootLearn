@@ -42,12 +42,21 @@
     <bean id = "composableAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
         p:pointcut="#{composablePointcut.getInterSectionPointCut()}"
         p:advice-ref="greetingBeforeAdvice"/>
-
     <!-- 引介切面 -->
 
+
+
+    <!-- 使用父子bean，借用ProxyFactoryBean创建代理类 -->
     <bean id = "parent" abstract="true" class = "org.springframework.aop.framework.ProxyFactoryBean"
           p:interceptorNames="composableAdvisor" p:proxyTargetClass="true"/>
     <!-- 代理类 -->
     <bean id="waiterProxy" parent = "parent" p:target-ref="waiterTarget"/>
     <bean id="sellerProxy" parent= "parent" p:target-ref = "sellerTarget"/>
+    <!-- 使用BeanNameAutoProxyCreator创建代理 -->
+    <!--<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"-->
+          <!--p:beanNames="waiterTarget,sellerTarget"-->
+          <!--p:interceptorNames="dynamicAdvisor"-->
+          <!--p:optimize="true"/>-->
+    <!-- 使用DefaultAdvisorAutoProxyCreator创建代理 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 </beans>
