@@ -39,7 +39,8 @@ public class RedisLock {
                 }
             });
         } catch (Exception e) {
-           log.info("set NX Redis Error, key :{}", key);
+            System.out.println("set NX Redis Error, key :{}" +  key);
+           //log.info("set NX Redis Error, key :{}", key);
         }
         return obj != null ? (boolean) obj : false;
     }
@@ -60,7 +61,8 @@ public class RedisLock {
                 }
             });
         } catch (Exception e) {
-            log.info("get Redis Error, key :{}", key);
+            System.out.println("get Redis Error, key :{}" + key);
+            //log.info("get Redis Error, key :{}", key);
         }
         return  obj != null ? obj.toString() : null;
     }
@@ -79,7 +81,8 @@ public class RedisLock {
             });
         }
         catch (Exception e){
-            log.info("getSet Redis Error, key :{}", key);
+            System.out.println("getSet Redis Error, key :{}" +  key);
+            //log.info("getSet Redis Error, key :{}", key);
         }
         return  obj != null ? obj.toString() : null;
     }
@@ -98,7 +101,8 @@ public class RedisLock {
             });
             return true;
         } catch (Exception e) {
-            log.info("del Redis Error, key :{}", key);
+            //log.info("del Redis Error, key :{}", key);
+            System.out.println("del Redis Error, key :{}"+  key);
         }
         return false;
     }
@@ -117,7 +121,8 @@ public class RedisLock {
             });
             return (Boolean)obj;
         } catch (Exception e) {
-            log.info("expire Redis Error, key :{}", key);
+            System.out.println("expire Redis Error, key :{}"+  key);
+            //log.info("expire Redis Error, key :{}", key);
         }
         return false;
     }
@@ -143,10 +148,12 @@ public class RedisLock {
      * @return
      */
     public synchronized long lock(final String key, final String threadName){
-        log.debug(threadName + "开始执行加锁");
+        //log.debug(threadName + "开始执行加锁");
+        System.out.println(threadName + "开始执行加锁");
         long lock_time_out = getCurrentRedisTime() + lockTimeOut;
         if(setNX(key, String.valueOf(lock_time_out))){
-            log.debug("加锁成功！+1");
+            System.out.println("加锁成功！+1");
+            //log.debug("加锁成功！+1");
             expire(key, lockTimeOut);
             return lock_time_out;
         } else {
@@ -155,7 +162,8 @@ public class RedisLock {
             if(current_lock_timeout != null && current_lock_timeout < getCurrentRedisTime()){
                 Long old_lock_timeout = Long.valueOf(getSet(key, String.valueOf(lock_time_out)));
                 if(null != old_lock_timeout && current_lock_timeout == old_lock_timeout){
-                    log.debug("加锁成功！+2");
+                    //log.debug("加锁成功！+2");
+                    System.out.println("加锁成功！+2");
                     expire(key, lockTimeOut);
                     return lock_time_out;
                 }
@@ -171,13 +179,16 @@ public class RedisLock {
      * @param threadName
      */
     public synchronized void unlock(String key, long value, String threadName) {
-        log.debug(threadName + "开始执行**解锁**");
+       // log.debug(threadName + "开始执行**解锁**");
+        System.out.println(threadName + "开始执行**解锁**");
         String result = get(key);
-        log.debug("获取到的lockValue为：[{}], 当前的线程为：[{}]", value, threadName);
+        System.out.println("获取到的lockValue为："+ value + ", 当前的线程为：" + threadName);
+        //log.debug("获取到的lockValue为：[{}], 当前的线程为：[{}]", value, threadName);
         Long current_lock_timeout = result == null ? null : Long.valueOf(result);
         if(current_lock_timeout != null && current_lock_timeout == value){
             del(key);
-            log.debug(threadName + "解锁成功！");
+            System.out.println(threadName + "解锁成功！");
+            //log.debug(threadName + "解锁成功！");
         }
     }
 
