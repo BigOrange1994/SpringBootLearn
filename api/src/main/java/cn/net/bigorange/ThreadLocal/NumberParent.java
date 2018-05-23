@@ -8,4 +8,5 @@ public class NumberParent {
     public void getA(String text){
 
     }
+
 }

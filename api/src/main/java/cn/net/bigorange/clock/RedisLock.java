@@ -152,18 +152,19 @@ public class RedisLock {
         System.out.println(threadName + "开始执行加锁");
         long lock_time_out = getCurrentRedisTime() + lockTimeOut;
         if(setNX(key, String.valueOf(lock_time_out))){
-            System.out.println("加锁成功！+1");
+            System.out.println(threadName+"加锁成功！+1");
             //log.debug("加锁成功！+1");
             expire(key, lockTimeOut);
             return lock_time_out;
         } else {
             Object result = get(key);
             Long current_lock_timeout = result == null ? null : Long.parseLong(result.toString());
-            if(current_lock_timeout != null && current_lock_timeout < getCurrentRedisTime()){
+            if (current_lock_timeout != null && current_lock_timeout < getCurrentRedisTime()){
                 Long old_lock_timeout = Long.valueOf(getSet(key, String.valueOf(lock_time_out)));
                 if(null != old_lock_timeout && current_lock_timeout == old_lock_timeout){
                     //log.debug("加锁成功！+2");
-                    System.out.println("加锁成功！+2");
+                    System.out.println(threadName
+                            +"加锁成功！+2");
                     expire(key, lockTimeOut);
                     return lock_time_out;
                 }
